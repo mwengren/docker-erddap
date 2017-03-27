@@ -23,6 +23,8 @@ ENV ERDDAP_WAR_URL https://github.com/BobSimons/erddap/releases/download/v$ERDDA
 RUN curl -fSL "$ERDDAP_WAR_URL" -o /erddap.war
 RUN unzip /erddap.war -d $CATALINA_HOME/webapps/erddap/
 
+# OOI Hackery!
+RUN curl -fSL ftp://ftp.unidata.ucar.edu/pub/netcdf-java/v4.6/netcdfAll-4.6.8.jar -o $CATALINA_HOME/webapps/erddap/WEB-INF/lib/netcdfAll-latest.jar
 
 # Java options
 COPY files/javaopts.sh $CATALINA_HOME/bin/javaopts.sh
