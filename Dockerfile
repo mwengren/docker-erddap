@@ -19,7 +19,7 @@ RUN \
     rm /erddap.war && \
     sed -i 's#</Context>#<Resources cachingAllowed="true" cacheMaxSize="100000" />\n&#' ${CATALINA_HOME}/conf/context.xml && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    mkdir -p ${ERDDAP_DATA}
+    mkdir -p ${ERDDAP_DATA} \
     mkdir -p ${ERDDAP_USER_DATA}
 
 # Java options
