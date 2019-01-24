@@ -24,6 +24,7 @@ if [ "$1" = 'start-tomcat.sh' ] || [ "$1" = 'catalina.sh' ]; then
 
     chown -R tomcat:tomcat ${CATALINA_HOME} && chmod 400 ${CATALINA_HOME}/conf/*
     chown -R tomcat:tomcat /erddapData
+    chown -R tomcat:tomcat /data
     sync
     exec gosu tomcat "$@"
 fi

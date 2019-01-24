@@ -5,6 +5,7 @@ ENV ERDDAP_VERSION 1.82
 ENV ERDDAP_CONTENT_URL https://github.com/BobSimons/erddap/releases/download/v$ERDDAP_VERSION/erddapContent.zip
 ENV ERDDAP_WAR_URL https://github.com/BobSimons/erddap/releases/download/v$ERDDAP_VERSION/erddap.war
 ENV ERDDAP_DATA /erddapData
+ENV ERDDAP_USER_DATA /data
 
 RUN \
     curl -fSL "http://coastwatch.pfeg.noaa.gov/erddap/download/BitstreamVeraSans.zip" -o /BitstreamVeraSans.zip && \
@@ -19,6 +20,7 @@ RUN \
     sed -i 's#</Context>#<Resources cachingAllowed="true" cacheMaxSize="100000" />\n&#' ${CATALINA_HOME}/conf/context.xml && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     mkdir -p ${ERDDAP_DATA}
+    mkdir -p ${ERDDAP_USER_DATA}
 
 # Java options
 COPY files/setenv.sh ${CATALINA_HOME}/bin/setenv.sh
